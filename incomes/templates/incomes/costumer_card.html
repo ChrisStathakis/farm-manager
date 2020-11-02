@@ -1,0 +1,151 @@
+{% extends 'dashboard.html' %}
+
+{% block content %}
+    <div class="content">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="header">
+                    <h4>{{ object }}</h4>
+                    <a href="{% url 'costumer_list' %}" class="btn btn-warning pull-right">ΕΠΙΣΤΡΟΦΗ</a>
+                </div>
+            </div>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>ΕΠΕΞΕΡΓΑΣΙΑ {{ object}}</h4>
+                        <form class="form" method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="card">
+                    <div class="card-header">
+                        <h6>ΔΗΜΙΟΥΡΓΙA ΠΛΗΡΩΜΗΣ</h6>
+                        <form method="post" class="form" action="{% url 'incomes:validate_payment_creation' object.id %}">
+                            {% csrf_token %}
+                            {{ payment_form }}
+                            <button type="submit" class="btn btn-success"><i class="fa fa-save"></i> ΑΠΟΘΗΚΕΥΣΗ </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
+                            Filters
+                        </a>
+                        <a href="{{ request.path }}" class="btn btn-danger">Καθαρισμος</a>
+
+                    </div>
+                    <div class="card-body">
+                        <div class="collapse" id="collapseExample">
+                            <form method="get" class="form">
+                                 <div class="row">
+                                      {% include 'filters/my_filters.html' %}
+                                 </div>
+                                 <button type="submit" class="btn btn-"><i class="fa fa-save"></i> Αποθηκευση </button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+           <div class="col-6">
+               <div class="card">
+                   <div class="card-header"><h6>ΤΙΜΟΛΟΓΙΑ</h6></div>
+                   <div class="card-body">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>ΗΜΕΡΟΜΗΝΙΑ</th>
+                                    <th>ΣΧΟΛΙΑ</th>
+                                    <th>ΤΡΟΠΟΣ ΠΛΗΡΩΜΗΣ</th>
+                                    <th>ΠΟΣΟ</th>
+                                    <th>-</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for ele in incomes %}
+                                    <tr>
+                                        <td>{{ ele.date_expired }}</td>
+                                        <td>{{ ele.title }}</td>
+                                        <td>{{ ele.payment_method }}</td>
+                                        <td>{{ ele.tag_final_value }}</td>
+                                        <td>
+                                            <a href="{% url 'incomes:update_or_delete_income_view' ele.id 'update' %}" class="btn btn-success"><i class="fa fa-edit"></i> </a>
+                                            <a href="{% url 'incomes:update_or_delete_income_view' ele.id 'delete' %}" class="btn btn-danger">
+                                                <i class="fa fa-remove"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                   </div>
+               </div>
+           </div>
+            <div class="col-6">
+               <div class="card">
+                   <div class="card-header"><h6>ΠΛΗΡΩΜΕΣ</h6></div>
+                   <div class="card-body">
+                       <table class="table table-bordered">
+                           <thead>
+                                <tr>
+                                    <th>ΗΜΕΡΟΜΗΝΙΑ</th>
+                                    <th>ΣΧΟΛΙΑ</th>
+                                    <th>ΤΡΟΠΟΣ ΠΛΗΡΩΜΗΣ</th>
+                                    <th>ΠΟΣΟ</th>
+                                    <th>- </th>
+                                </tr>
+                           </thead>
+                           <tbody>
+                                {% for ele in object.payments.all %}
+                                    <tr>
+                                        <td>{{ ele.date }}</td>
+                                        <td>{{ ele.title }}</td>
+                                        <td>{{ ele.payment_method }}</td>
+                                        <td>{{ ele.tag_final_value }}</td>
+                                        <td><a href="{% url 'incomes:update_or_delete_payment_view' ele.id 'update' %}" class="btn btn-primary">
+                                            <i class="fa fa-edit"></i> </a>
+                                            <a href="{% url 'incomes:update_or_delete_payment_view' ele.id 'delete' %}" class="btn btn-danger">
+                                            <i class="fa fa-remove"></i> </a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                           </tbody>
+                       </table>
+                   </div>
+               </div>
+           </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block extra_js %}
+
+    <script type="text/javascript">
+        $('.edit_button').click(function (evt) {
+            evt.preventDefault();
+            const btn = $(this);
+            const url = btn.attr('data-href');
+            
+
+        })
+    </script>
+{% endblock %}

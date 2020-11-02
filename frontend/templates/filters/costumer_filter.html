@@ -1,0 +1,23 @@
+{% load zefarak_tags %}
+<div class="col-6">
+    <div class="form-group">
+        <h6>ΠΕΛΑΤΕΣ</h6>
+        {% for costumer in costumers %}
+            <div class="form-check">
+                <label class="form-check-label">
+                    <input
+                            class="form-check-input"
+                            type="checkbox"
+                            value="{{ costumer.id }}"
+                            name="costumer_name"
+                            {% if costumer.id|stringformat:"s" in request.GET|get_item:"costumer_name" %} checked {% endif %}
+                    >
+                    {{ costumer }}
+                    <span class="form-check-sign">
+                        <span class="check"></span>
+                    </span>
+                </label>
+            </div>
+        {% endfor %}
+    </div>
+</div>
