@@ -29,7 +29,6 @@ def initial_date(request, months=12):
             date_start = datetime.datetime.strptime(date_range[0], '%m/%d/%Y')
             date_end = datetime.datetime.strptime(date_range[1],'%m/%d/%Y')
         except:
-            print('except hitted')
             date_three_months_ago = date_now - relativedelta(months=months)
             date_start = date_three_months_ago
             date_end = date_now

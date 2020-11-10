@@ -12,15 +12,15 @@ SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-PRODUCTION = False
-TEST_POSTGRES = False
+PRODUCTION = True
+USE_POSTGRES = True
 
 
 # app management
 # SHOW_VENDORS = config('SHOW_VENDORS')
 # SHOW_PAYROLL = config('SHOW_PAYROLL')
 
-ALLOWED_HOSTS = ['tenis-quick-shop.herokuapp.com'] if PRODUCTION else ['*']
+ALLOWED_HOSTS = [config('site_url')] if PRODUCTION else ['*']
 
 
 # Application definition
@@ -99,14 +99,14 @@ WSGI_APPLICATION = 'shop_quick_view.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
-if PRODUCTION:
+if USE_POSTGRES:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
-            'NAME': 'test_shop' if TEST_POSTGRES else config('DATABASE'),
-            'USER': config('USER'),
-            'PASSWORD': config('PASSWORD'),
-            'HOST': config('HOST'),
+            'NAME': config('Database'),
+            'USER': config('User'),
+            'PASSWORD': config('Password'),
+            'HOST': config('Host'),
             'PORT': '5432',
         }
     }

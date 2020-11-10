@@ -7,7 +7,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h4>Συνολική Εικόνα  ==> <span style="color: green"> {{ total }} {{ currency }} </span></h4>
+                        <h4>Συνολική Εικόνα  ==> <span style="color: green"> {{ total_incomes }} {{ currency }} </span></h4>
                         <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
                             Filters
                         </a>
@@ -78,17 +78,17 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td  class="table-info">Συνολο</td>
-                                    <td  class="table-info">{{ total_z }} </td>
+                                    <td  class="table-info">ΚΑΘΑΡΗ ΑΞΙΑ</td>
+                                    <td  class="table-info">{{ clean_value }} </td>
                                 </tr>
                                 
                                 <tr>
-                                    <td>Συνολο Μετρητα </td>
-                                    <td class='table-light'>{{ total_cash }}</td>
+                                    <td>ΦΟΡΟΣ</td>
+                                    <td class='table-danger'>{{ taxes }}</td>
                                 </tr>
                                 <tr>
-                                    <td class='table-success'>Συνολο</td>
-                                    <td class='table-success'>{{ total }}</td>
+                                    <td class='table-success'>ΣΥΝΟΛΟ</td>
+                                    <td class='table-success'>{{ total_value }}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -103,6 +103,7 @@
                             <thead>
                                 <tr>
                                     <th>ΗΜΕΡΟΜΗΝΙΑ</th>
+                                    <th>ΠΕΛΑΤΗΣ</th>
                                     <th>ΚΑΘΑΡΗ</th>
                                     <th>ΦΟΡΟΣ</th>
                                     <th>ΣΥΝΟΛΟ</th>
@@ -112,8 +113,10 @@
                                 {% for income in object_list %}
                                     <tr>
                                         <td>{{ income.date_expired }}</td>
-                                        <td></td>
+                                        <td>{{ income.costumer }}</td>
                                         <td>{{ income.tag_value }}</td>
+                                        <td>{{ income.tag_taxes }}</td>
+                                        <td>{{ income.tag_total_value }}</td>
                                     </tr>
                                 {% endfor %}
                             </tbody>

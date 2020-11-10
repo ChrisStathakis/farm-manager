@@ -33,7 +33,10 @@ class Costumer(models.Model):
         ordering = ['title', 'afm']
 
     def save(self, *args, **kwargs):
-
+        incomes = self.incomes.all()
+        payments = self.payments.all()
+        self.value = incomes.aggregate(Sum('total_value'))['total_value__sum'] if incomes.exists() else 0
+        self.paid_value = payments.aggregate(Sum('value'))['value__sum'] if payments.exists() else 0
         self.balance = self.value - self.paid_value
         super(Costumer, self).save(*args, **kwargs)
 
@@ -147,10 +150,10 @@ class Income(models.Model):
     date_expired = models.DateField(verbose_name='Ημερομηνια')
     title = models.CharField(blank=True, null=True, verbose_name='Σημειωσεις', max_length=240)
     value = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='ΚΑΘΑΡΗ ΑΞΙΑ')
-    taxes_modifier = models.IntegerField(default=24,verbose_name='ΦΠΑ')
+    taxes_modifier = models.IntegerField(default=24, verbose_name='ΦΠΑ')
     taxes = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='ΦΟΡΟΣ')
     order_type = models.CharField(default='a', choices=ORDER_TYPE_STATUS, max_length=1, verbose_name='ΕΙΔΟΣ ΠΑΡΑΣΤΑΤΙΚΟΥ')
-    total_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='' )
+    total_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΑΞΙΑ' )
 
     class Meta:
         ordering = ['-date_expired']
@@ -159,8 +162,19 @@ class Income(models.Model):
         return f'{self.date_expired}'
 
     def save(self, *args, **kwargs):
+        self.value = self.total_value/Decimal(1 + self.taxes_modifier/100)
+        self.taxes = self.total_value - self.value
         super().save(*args, **kwargs)
         self.costumer.save()
+
+    def tag_value(self):
+        return f'{self.value} {CURRENCY}'
+
+    def tag_total_value(self):
+        return f'{self.total_value} {CURRENCY}'
+
+    def tag_taxes(self):
+        return f'{self.taxes} {CURRENCY}'
 
     def get_edit_url(self):
         return reverse('incomes:update', kwargs={'pk': self.id})

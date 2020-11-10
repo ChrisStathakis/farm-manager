@@ -244,11 +244,12 @@
                         <table class='table table-bordered'>
                             <thead>
                                 <tr>
-                                    <th>Ημερομηνια</th>
-                                    <th>Τιτλος</th>
-                                    <th>Περιγραφη</th>
-                                    <th>Ποσο</th>
-                                    <th>Επεξεργασια</th>
+                                    <th>ΗΜΕΡΟΜΗΝΙΑ</th>
+                                    <th>ΤΙΤΛΟΣ</th>
+                                    <th>ΚΑΘΑΡΗ ΑΞΙΑ</th>
+                                    <th>ΦΟΡΟΣ</th>
+                                    <th>ΑΞΙΑ</th>
+                                    <th> - </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -256,7 +257,8 @@
                                     <tr>
                                         <td>{{ invoice.date }}</td>
                                         <td>{{ invoice.title }}</td>
-                                        <td>{{ invoice.description }}</td>
+                                        <td>{{ invoice.tag_clean_value }}</td>
+                                        <td>{{ invoice.tag_total_taxes }}</td>
                                         <td>{{ invoice.tag_value }}</td>
                                         <td><a data-href="{% url 'vendors:ajax_invoice_modal' invoice.id %}" class='btn btn-primary quick_view'><i class='fa fa-edit'></i></a></td>
                                     </tr>

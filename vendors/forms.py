@@ -37,7 +37,7 @@ class InvoiceVendorDetailForm(BaseForm, forms.ModelForm):
 
     class Meta:
         model = Invoice
-        fields = ['date', 'title', 'vendor', 'value', 'extra_value', 'payment_method', 'description']
+        fields = ['date', 'title', 'vendor', 'value', 'extra_value', 'taxes_modifier', 'payment_method', 'description']
 
 
 class InvoiceForm(BaseForm, forms.ModelForm):

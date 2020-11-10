@@ -82,7 +82,9 @@ class UpdateVendorView(UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['invoice_form'] = InvoiceVendorDetailForm(initial={'vendor': self.object})
+        context['invoice_form'] = InvoiceVendorDetailForm(initial={'vendor': self.object,
+                                                                   'taxes_modifier': self.object.taxes_modifier
+                                                                   })
         context['payment_form'] = PaymentForm(initial={'vendor': self.object})
         context['employer_form'] = EmployerForm(initial={'vendor': self.object})
         context['page_title'] = f'{self.object.title}'

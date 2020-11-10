@@ -18,7 +18,7 @@ class IncomeTable(tables.Table):
     class Meta:
         model = Income
         template_name = 'django_tables2/bootstrap.html'
-        fields = ['date_expired','title', 'costumer', 'value', 'action']
+        fields = ['date_expired','title', 'costumer', 'total_value', 'action']
 
 
 class CostumerTable(tables.Table):

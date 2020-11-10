@@ -7,13 +7,17 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                    <h4>Συνολική Εικόνα</h4>
+                        <h4>Συνολική Εικόνα</h4>
                         <div class="row">
                             <div class="col-6"> <h5>Διαφορα με Υποχρεωσεις ==> {{ diff_obligations }} {{ currency }}</h5></div>
                             <div class="col-6"><h5>Διαφορα με πληρωμες ==> {{ diff_paid }} {{ currency }}</h5></div>
                         </div>
-                        <a class="btn btn-primary" data-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-                            Filters
+                        <a class="btn btn-primary"
+                           data-toggle="collapse"
+                           href="#collapseExample"
+                           role="button"
+                           aria-expanded="false"
+                           aria-controls="collapseExample">Filters
                         </a>
                         <a href="{{ request.path }}" class="btn btn-danger">Καθαρισμος</a>
                         <a href="{{ back_url }}" class="btn btn-warning pull-right">Επιστροφη</a>
@@ -147,30 +151,22 @@
                         <table class='table'>
                             <thead>
                                 <tr class='table-success'>
-                                    <th>Τροπος Εσοδου</th>
+                                    <th>-</th>
                                     <th>#</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr class=>
-                                    <th>Συνολο Ζ</th>
-                                    <th>{{ total_z }} {{ currency }}</th>
+                                    <th>ΚΑΘΑΡΑ ΕΣΟΔΑ</th>
+                                    <th>{{ income_clean_value }} {{ currency }}</th>
                                 </tr>
                                 <tr>
-                                    <td>Συνολο POS</td>
-                                    <td>{{ total_pos }} {{ currency }}</td>
+                                    <td>ΦΟΡΟΣ</td>
+                                    <td>{{ income_taxes }} {{ currency }}</td>
                                 </tr>
                                 <tr>
-                                    <td>Συνολο Τιμολογιων</td>
-                                    <td>{{ total_order}} {{ currency }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Μετρητα</td>
-                                    <td>{{ total_cash}} {{ currency }}</td>
-                                </tr>
-                                <tr>
-                                    <td>Συνολο</td>
-                                    <td class="table-success">{{ incomes_total }} {{ currency }}</td>
+                                    <td>ΣΥΝΟΛΟ</td>
+                                    <td class="table-success">{{ income_value }} {{ currency }}</td>
                                 </tr>
                             </tbody>
                         </table>

@@ -9,11 +9,10 @@ class IncomeForm(BaseForm, forms.ModelForm):
     
     class Meta:
         model = Income
-        fields = ['date_expired', 'title', 'costumer', 'value', 'taxes_modifier', ]
+        fields = ['date_expired', 'title', 'costumer', 'total_value', 'taxes_modifier', ]
 
 
 class CostumerForm(BaseForm, forms.ModelForm):
-
 
     class Meta:
         model = Costumer

@@ -6,6 +6,12 @@ from django.conf import settings
 import uuid
 
 CURRENCY = settings.CURRENCY
+TAXES_CHOICES = (
+    ('a', 0),
+    ('b', 13),
+    ('c', 24)
+)
+
 
 from frontend.models import PaymentMethod
 
@@ -21,14 +27,24 @@ class DefaultOrderModel(models.Model):
                                        on_delete=models.PROTECT,
                                        verbose_name='Τρόπος Πληρωμής')
     date_expired = models.DateField(default=timezone.now, verbose_name='Ημερομηνία')
+    taxes_modifier = models.CharField(max_length=1, choices=TAXES_CHOICES, verbose_name='a')
     value = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='Αξία')
-    taxes = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='Φόροι')
+    clean_value = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='ΚΑΘΑΡΗ ΑΞΙΑ')
+    total_taxes = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='Φόροι')
     paid_value = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='Πληρωτέο Ποσό')
     final_value = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='Τελική Αξίσ')
     discount = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='Επιπλέον Έκπτωση')
     is_paid = models.BooleanField(default=False, verbose_name='Πληρωμένο?')
     printed = models.BooleanField(default=False, verbose_name='Εκτυπωμένο')
     objects = models.Manager()
+
+    def save(self, *args, **kwargs):
+        self.final_value = self.value - self.discount
+        self.total_taxes = self.final_value * self.get_taxes_modifier_display()/100
+        self.clean_value = self.final_value - self.total_taxes
+        if self.is_paid:
+            self.paid_value = self.final_value
+        super(DefaultOrderModel, self).save(*args, **kwargs)
 
     class Meta:
         abstract = True

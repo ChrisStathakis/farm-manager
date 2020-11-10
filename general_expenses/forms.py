@@ -16,7 +16,7 @@ class GeneralExpenseForm(BaseForm, forms.ModelForm):
 
     class Meta:
         model = GeneralExpense
-        fields = ['is_paid', 'date', 'category','title', 'value', ]
+        fields = ['is_paid', 'date', 'category','title', 'value', 'taxes_modifier']
 
 
 class GeneralExpenseCategoryForm(BaseForm, forms.ModelForm):

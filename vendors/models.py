@@ -10,13 +10,9 @@ from decimal import Decimal
 from frontend.models import PaymentMethod
 
 from frontend.tools import initial_date
+from payroll.abstract_models import TAXES_CHOICES
 
 CURRENCY = settings.CURRENCY
-TAXES_CHOICES = (
-    ('a', 0),
-    ('b', 13),
-    ('c', 24)
-)
 
 
 class Vendor(models.Model):
@@ -35,7 +31,7 @@ class Vendor(models.Model):
     balance = models.DecimalField(decimal_places=2, max_digits=50, default=0.00, verbose_name='Υπόλοιπο')
     paid_value = models.DecimalField(decimal_places=2, max_digits=50, default=0.00)
     value = models.DecimalField(decimal_places=2, max_digits=50, default=0.00)
-    taxes_modifier = models.CharField(max_length=1, choices=TAXES_CHOICES, default='c')
+    taxes_modifier = models.CharField(max_length=1, choices=TAXES_CHOICES, default='c', verbose_name='ΦΠΑ')
 
     class Meta:
         ordering = ['title']
@@ -129,13 +125,17 @@ class Invoice(models.Model):
     extra_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='Επιπλέον Αξία')
     final_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='Αξία', default=0.00)
     description = models.TextField(blank=True, verbose_name='Λεπτομεριες')
+    taxes_modifier = models.CharField(max_length=1, choices=TAXES_CHOICES, default='a', verbose_name='ΦΠΑ')
+    clean_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΚΑΘΑΡΗ ΑΞΙΑ', default=0.00)
+    total_taxes = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΑΞΙΑ ΦΟΡΩΝ', default=0.00)
 
     class Meta:
         ordering = ['-date']
 
     def save(self, *args, **kwargs):
         self.final_value = self.value + self.extra_value
-        print('here')
+        self.total_taxes = self.final_value * self.get_taxes_modifier_display()/100
+        self.clean_value = self.final_value - self.total_taxes
         super(Invoice, self).save(*args, **kwargs)
         if self.vendor:
             self.vendor.update_value()
@@ -146,16 +146,19 @@ class Invoice(models.Model):
     def tag_value(self):
         return f'{self.final_value} {CURRENCY}'
 
+    def tag_clean_value(self):
+        return f'{self.clean_value} {CURRENCY}'
+
+    def tag_total_taxes(self):
+        return f'{self.total_taxes} {CURRENCY}'
+
     @staticmethod
     def filters_data(request, qs):
         date_start, date_end, date_range = initial_date(request, 6)
-        print('start', date_start, 'end', date_end)
         search_name = request.GET.get('search_name', None)
         qs = qs.filter(title__icontains=search_name) if search_name else qs
         if date_start and date_end:
-            print('hitted!', date_end, date_start)
             qs = qs.filter(date__range=[date_start, date_end])
-        print(qs.count())
         return qs
 
 

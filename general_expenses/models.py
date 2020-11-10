@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.conf import settings
 
+from vendors.models import TAXES_CHOICES
 
 CURRENCY = settings.CURRENCY
 
@@ -26,15 +27,20 @@ class GeneralExpenseCategory(models.Model):
 
 
 class GeneralExpense(models.Model):
-    title = models.CharField(blank=True, max_length=200, verbose_name='Περιγραφη')
-    category = models.ForeignKey(GeneralExpenseCategory, on_delete=models.PROTECT, verbose_name='Κατηγορια')
-    value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='Αξια')
-    paid_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='Πληρωτεο Ποσο')
+    title = models.CharField(blank=True, max_length=200, verbose_name='ΠΕΡΙΓΡΑΦΗ')
+    category = models.ForeignKey(GeneralExpenseCategory, on_delete=models.PROTECT, verbose_name='ΚΑΤΗΓΟΡΙΑ')
+    value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΑΞΙΑ')
+    paid_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΠΛΗΡΩΤΕΟ ΠΟΣΟ')
     is_paid = models.BooleanField(default=True, verbose_name='Πληρωμενο;')
-    date = models.DateField(verbose_name='Ημερομηνια')
+    date = models.DateField(verbose_name='ΗΜΕΡΟΜΗΝΙΑ')
+    taxes_modifier = models.CharField(max_length=1, choices=TAXES_CHOICES, default='a', verbose_name='ΦΠΑ')
+    total_taxes = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΦΟΡΟΣ')
+    clean_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΚΑΘΑΡΗ ΑΞΙΑ')
 
     def save(self, *args, **kwargs):
         self.paid_value = self.value if self.is_paid else 0
+        self.total_taxes = self.value * self.get_taxes_modifier_display()/100
+        self.clean_value = self.value - self.total_taxes
         super().save(*args, **kwargs)
 
     def __str__(self):
