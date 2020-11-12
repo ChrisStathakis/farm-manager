@@ -18,7 +18,10 @@
       </div>
       <div class="modal-footer">
         <a href="{{ copy_url }}"  class="btn btn-primary">Δημιουργια Αντιγραφου</a>
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          {% if delete_url %}
+            <a href="{{ delete_url }}" class="btn btn-danger">ΔΙΑΓΡΑΦΗ</a>
+          {% endif %}
+
       </div>
     </div>
   </div>

@@ -4,6 +4,7 @@ from django.utils import timezone
 
 from django.conf import settings
 import uuid
+from decimal import Decimal
 
 CURRENCY = settings.CURRENCY
 TAXES_CHOICES = (
@@ -40,7 +41,8 @@ class DefaultOrderModel(models.Model):
 
     def save(self, *args, **kwargs):
         self.final_value = self.value - self.discount
-        self.total_taxes = self.final_value * self.get_taxes_modifier_display()/100
+        print(self.get_taxes_modifier_display())
+        self.total_taxes = self.final_value * Decimal(self.get_taxes_modifier_display()/100)
         self.clean_value = self.final_value - self.total_taxes
         if self.is_paid:
             self.paid_value = self.final_value

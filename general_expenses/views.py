@@ -6,8 +6,8 @@ from django.utils.decorators import method_decorator
 from django.contrib.admin.views.decorators import staff_member_required
 
 from .models import GeneralExpenseCategory, GeneralExpense
-from .tables import GeneralExpenseTable, GeneralExpenseCategoryTable
-from .forms import GeneralExpenseForm, GeneralExpenseCategoryForm
+from .tables import GeneralExpenseTable, GeneralExpenseCategoryTable, GeneralExpenseTableFromCategory
+from .forms import GeneralExpenseForm, GeneralExpenseCategoryForm, GeneralFormFromCategory
 from django_tables2 import RequestConfig
 
 
@@ -64,6 +64,47 @@ class GeneralExpenseUpdateView(UpdateView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['back_url'] = self.success_url
+        context['form_title'] = 'Δημιουργια Εξοδου'
+        context['delete_url'] = self.object.get_delete_url()
+        return context
+
+    def form_valid(self, form):
+        form.save()
+        messages.success(self.request, 'Το εξοδο επεξερεγαστηκε')
+        return super().form_valid(form)
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class GeneralExpenseCardView(ListView):
+    model = GeneralExpense
+    template_name = 'general_expenses/generic_expense_card_view.html'
+    paginate_by = 30
+
+    def get_queryset(self):
+        self.category = get_object_or_404(GeneralExpenseCategory, id=self.kwargs['pk'])
+        qs = GeneralExpense.filters_data(self.request, GeneralExpense.objects.filter(category=self.category))
+        return qs
+
+    def get_context_data(self,  **kwargs):
+        context = super(GeneralExpenseCardView, self).get_context_data(**kwargs)
+        context['form'] = GeneralFormFromCategory(self.request.POST or None, initial={'category': self.category})
+        context['queryset_table'] = GeneralExpenseTableFromCategory(self.object_list)
+        context['category'] = self.category
+        return context
+
+
+@method_decorator(staff_member_required, name='dispatch')
+class GeneralExpenseUpdateFromDetailView(UpdateView):
+    model = GeneralExpense
+    form_class = GeneralExpenseForm
+    template_name = 'general_expenses/form_view.html'
+
+    def get_success_url(self):
+        return self.object.category.get_card_url()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['back_url'] = self.get_success_url()
         context['form_title'] = 'Δημιουργια Εξοδου'
         context['delete_url'] = self.object.get_delete_url()
         return context

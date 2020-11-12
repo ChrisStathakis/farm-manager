@@ -12,11 +12,15 @@ class BaseForm(forms.Form):
 
 
 class GeneralExpenseForm(BaseForm, forms.ModelForm):
-    date = forms.DateField(required=True, widget=forms.DateInput(attrs={'type': 'date'}))
+    date = forms.DateField(required=True,  widget=forms.DateInput(attrs={'type': 'date'}))
 
     class Meta:
         model = GeneralExpense
         fields = ['is_paid', 'date', 'category','title', 'value', 'taxes_modifier']
+
+
+class GeneralFormFromCategory(GeneralExpenseForm):
+    category = forms.ModelChoiceField(queryset=GeneralExpense.objects.all(), widget=forms.HiddenInput(), required=True)
 
 
 class GeneralExpenseCategoryForm(BaseForm, forms.ModelForm):

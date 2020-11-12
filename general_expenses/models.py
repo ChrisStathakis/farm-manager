@@ -1,7 +1,7 @@
 from django.db import models
 from django.shortcuts import reverse
 from django.conf import settings
-
+from django.db.models import Sum
 from vendors.models import TAXES_CHOICES
 
 CURRENCY = settings.CURRENCY
@@ -9,6 +9,12 @@ CURRENCY = settings.CURRENCY
 
 class GeneralExpenseCategory(models.Model):
     title = models.CharField(unique=True, max_length=200, verbose_name='Ονομασια')
+    balance = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΑΞΙΑ', default=0)
+
+    def save(self, *args, **kwargs):
+        qs = self.generalexpense_set.filter(is_paid=False)
+        self.balance = qs.aggregate(Sum('value'))['value__sum'] if qs.exists() else 0
+        super(GeneralExpenseCategory, self).save(*args, **kwargs)
 
     def __str__(self):
         return self.title
@@ -16,8 +22,14 @@ class GeneralExpenseCategory(models.Model):
     def get_edit_url(self):
         return reverse('generic_expenses:category_update', kwargs={'pk': self.id})
 
+    def get_card_url(self):
+        return reverse('generic_expenses:card', kwargs={'pk': self.id})
+
     def get_delete_url(self):
         return reverse('generic_expenses:category_delete', kwargs={'pk': self.id})
+
+    def tag_balance(self):
+        return f'{self.balance} {CURRENCY}'
 
     @staticmethod
     def filters_data(request, qs):
@@ -37,17 +49,24 @@ class GeneralExpense(models.Model):
     total_taxes = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΦΟΡΟΣ')
     clean_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΚΑΘΑΡΗ ΑΞΙΑ')
 
+    class Meta:
+        ordering = ['-date', ]
+
     def save(self, *args, **kwargs):
         self.paid_value = self.value if self.is_paid else 0
         self.total_taxes = self.value * self.get_taxes_modifier_display()/100
         self.clean_value = self.value - self.total_taxes
         super().save(*args, **kwargs)
+        self.category.save()
 
     def __str__(self):
         return self.title if self.title else f'Παραστατικο-{self.id}'
 
     def get_edit_url(self):
         return reverse('generic_expenses:update', kwargs={'pk': self.id})
+
+    def get_edit_category_url(self):
+        return reverse('generic_expenses:update_invoice_from_card', kwargs={'pk': self.id})
 
     def get_delete_url(self):
         return reverse('generic_expenses:delete', kwargs={'pk': self.id})
@@ -57,6 +76,7 @@ class GeneralExpense(models.Model):
 
     def tag_value(self):
         return f'{self.value} {CURRENCY}'
+
 
     @property
     def report_date(self):

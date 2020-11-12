@@ -69,7 +69,7 @@ class BillForm(BaseForm, forms.ModelForm):
 
     class Meta:
         model = Bill
-        fields = ['is_paid', 'date_expired', 'category', 'title', 'payment_method', 'value', ]
+        fields = ['is_paid', 'date_expired', 'category', 'title', 'payment_method', 'taxes_modifier','value', ]
 
 
 class BillCategoryForm(BaseForm, forms.ModelForm):
