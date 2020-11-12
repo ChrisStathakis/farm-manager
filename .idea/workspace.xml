@@ -5,23 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1480b706-c3a3-4352-8915-cfbc3558cf25" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/general_expenses/action_views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/general_expenses/ajax_views.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/general_expenses/signals.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/general_expenses/templates/general_expenses/generic_expense_card_view.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db_demo.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_demo.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_expenses/__init__.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/__init__.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_expenses/apps.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/apps.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_expenses/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_expenses/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_expenses/tables.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/tables.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_expenses/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_expenses/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/abstract_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/abstract_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/ajax_views.py" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/ajax_views.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/forms.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/payroll/templates/payroll/ajax/form_modal.html" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/templates/payroll/ajax/form_modal.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/incomes/forms.py" beforeDir="false" afterPath="$PROJECT_DIR$/incomes/forms.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/incomes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/incomes/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/incomes/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/incomes/views.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -55,27 +42,6 @@
               <folding>
                 <element signature="e#0#56#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/general_expenses/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="340">
-              <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-              <folding>
-                <element signature="e#0#28#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="generic_expense_card_view.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/general_expenses/templates/general_expenses/generic_expense_card_view.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-646">
-              <caret line="10" column="44" selection-start-line="10" selection-start-column="44" selection-end-line="10" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -134,14 +100,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tables.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/general_expenses/tables.py">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/incomes/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="346">
-              <caret line="47" column="37" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="37" />
+            <state relative-caret-position="134">
+              <caret line="128" column="10" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
               <folding>
-                <element signature="e#0#31#0" expanded="true" />
+                <element signature="e#0#73#0" expanded="true" />
+                <element signature="e#681#1300#0" />
+                <element signature="e#1402#2158#0" />
+                <element signature="e#2259#2836#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="models.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/incomes/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="148" column="122" selection-start-line="148" selection-start-column="122" selection-end-line="148" selection-end-column="122" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="forms.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/incomes/forms.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state>
+              <caret line="3" column="34" lean-forward="true" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -216,12 +203,9 @@
         <option value="$PROJECT_DIR$/incomes/action_views.py" />
         <option value="$PROJECT_DIR$/incomes/urls.py" />
         <option value="$PROJECT_DIR$/incomes/templates/incomes/costumer_card.html" />
-        <option value="$PROJECT_DIR$/incomes/views.py" />
         <option value="$PROJECT_DIR$/frontend/templates/filters/my_filters.html" />
         <option value="$PROJECT_DIR$/frontend/templates/filters/costumer_filter.html" />
-        <option value="$PROJECT_DIR$/incomes/forms.py" />
         <option value="$PROJECT_DIR$/incomes/tables.py" />
-        <option value="$PROJECT_DIR$/incomes/models.py" />
         <option value="$PROJECT_DIR$/analysis/templates/analysis/analysis_incomes.html" />
         <option value="$PROJECT_DIR$/vendors/forms.py" />
         <option value="$PROJECT_DIR$/vendors/views.py" />
@@ -246,6 +230,9 @@
         <option value="$PROJECT_DIR$/general_expenses/signals.py" />
         <option value="$PROJECT_DIR$/general_expenses/apps.py" />
         <option value="$PROJECT_DIR$/general_expenses/__init__.py" />
+        <option value="$PROJECT_DIR$/incomes/views.py" />
+        <option value="$PROJECT_DIR$/incomes/forms.py" />
+        <option value="$PROJECT_DIR$/incomes/models.py" />
         <option value="$PROJECT_DIR$/shop_quick_view/settings.py" />
       </list>
     </option>
@@ -295,7 +282,7 @@
             <path>
               <item name="farm-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="farm-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="shop_quick_view" type="462c0819:PsiDirectoryNode" />
+              <item name="incomes" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -378,6 +365,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -559,27 +547,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/incomes/forms.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="46" selection-start-line="14" selection-start-column="46" selection-end-line="14" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/incomes/tables.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
           <caret line="18" column="22" lean-forward="true" selection-start-line="18" selection-start-column="22" selection-end-line="18" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/incomes/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="31" column="53" selection-start-line="31" selection-start-column="53" selection-end-line="31" selection-end-column="53" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -644,13 +615,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1159">
           <caret line="152" column="58" lean-forward="true" selection-start-line="152" selection-start-column="58" selection-end-line="152" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/incomes/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="141" lean-forward="true" selection-start-line="141" selection-end-line="141" />
         </state>
       </provider>
     </entry>
@@ -863,6 +827,33 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" lean-forward="true" selection-start-line="1" selection-end-line="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/incomes/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="134">
+          <caret line="128" column="10" selection-start-line="128" selection-start-column="10" selection-end-line="128" selection-end-column="10" />
+          <folding>
+            <element signature="e#0#73#0" expanded="true" />
+            <element signature="e#681#1300#0" />
+            <element signature="e#1402#2158#0" />
+            <element signature="e#2259#2836#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/incomes/forms.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret line="3" column="34" lean-forward="true" selection-start-line="3" selection-start-column="34" selection-end-line="3" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/incomes/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="148" column="122" selection-start-line="148" selection-start-column="122" selection-end-line="148" selection-end-column="122" />
         </state>
       </provider>
     </entry>

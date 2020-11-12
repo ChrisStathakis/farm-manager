@@ -125,8 +125,8 @@ class CostumerCreateView(CreateView):
         context = super(CostumerCreateView, self).get_context_data(**kwargs)
         context['back_url'] = reverse('incomes:costumer_list')
         context['form_title'] = 'ΔΗΜΙΟΥΡΓΙΑ ΠΕΛΑΤΗ'
-        context['incomes'] = Income.filters_data(self.request, self.object.incomes.all())
-        context['payments'] = CostumerPayment.filters_data(self.request, self.object.payments.all())
+        # context['incomes'] = Income.filters_data(self.request, self.object.incomes.all())
+        # context['payments'] = CostumerPayment.filters_data(self.request, self.object.payments.all())
         return context
 
 

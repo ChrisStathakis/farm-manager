@@ -146,6 +146,7 @@ class Income(models.Model):
         ('b', 'ΑΠΟΔΕΙΞΗ'),
         ('c', 'ΑΛΛΟ')
     )
+    payment_method = models.ForeignKey(PaymentMethod, null=True, verbose_name='ΤΡΟΠΟΣ ΠΛΗΡΩΜΗΣ', on_delete=models.SET_NULL)
     costumer = models.ForeignKey(Costumer, on_delete=models.CASCADE, null=True, related_name='incomes', verbose_name='ΠΕΛΑΤΗΣ')
     date_expired = models.DateField(verbose_name='Ημερομηνια')
     title = models.CharField(blank=True, null=True, verbose_name='Σημειωσεις', max_length=240)
