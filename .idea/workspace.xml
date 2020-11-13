@@ -5,13 +5,26 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1480b706-c3a3-4352-8915-cfbc3558cf25" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/analysis/templates/analysis/homepage.html" beforeDir="false" afterPath="$PROJECT_DIR$/analysis/templates/analysis/homepage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/costumers/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/costumers/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/costumers/migrations/0002_auto_20201109_1505.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/costumers/migrations/0003_auto_20201112_1624.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/costumers/migrations/0004_auto_20201112_1730.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/db_demo.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db_demo.sqlite3" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/templates/include/js.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/templates/include/js.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/frontend/tools.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/tools.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/general_expenses/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/general_expenses/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/general_expenses/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/general_expenses/migrations/0002_generalexpensecategory_balance.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/general_expenses/migrations/0003_auto_20201112_1730.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/incomes/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/incomes/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/incomes/migrations/0002_income_payment_method.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/incomes/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/incomes/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/notebook/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/notebook/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/orders/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/orders/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/payroll/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/payroll/migrations/0001_initial.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/products/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/products/migrations/0001_initial.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/shop_quick_view/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/shop_quick_view/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendors/migrations/0001_initial.py" beforeDir="false" afterPath="$PROJECT_DIR$/vendors/migrations/0001_initial.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -24,7 +37,20 @@
     <option name="myCustomStartScript" value="import sys; print('Python %s on %s' % (sys.version, sys.platform))&#10;import django; print('Django %s' % django.get_version())&#10;sys.path.extend([WORKING_DIR_AND_PYTHON_PATHS])&#10;if 'setup' in dir(django): django.setup()&#10;import django_manage_shell; django_manage_shell.run(PROJECT_ROOT)" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="settings.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/shop_quick_view/settings.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="221">
+              <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+              <folding>
+                <element signature="e#0#27#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -114,17 +140,17 @@
         <option value="$PROJECT_DIR$/analysis/templates/analysis/balance_sheet.html" />
         <option value="$PROJECT_DIR$/analysis/templates/analysis/analysis_incomes.html" />
         <option value="$PROJECT_DIR$/incomes/action_views.py" />
-        <option value="$PROJECT_DIR$/incomes/models.py" />
         <option value="$PROJECT_DIR$/incomes/views.py" />
         <option value="$PROJECT_DIR$/incomes/templates/incomes/costumer_card.html" />
         <option value="$PROJECT_DIR$/incomes/forms.py" />
         <option value="$PROJECT_DIR$/vendors/models.py" />
         <option value="$PROJECT_DIR$/analysis/views.py" />
-        <option value="$PROJECT_DIR$/shop_quick_view/settings.py" />
         <option value="$PROJECT_DIR$/analysis/templates/analysis/homepage.html" />
         <option value="$PROJECT_DIR$/general_expenses/models.py" />
         <option value="$PROJECT_DIR$/frontend/tools.py" />
         <option value="$PROJECT_DIR$/frontend/templates/include/js.html" />
+        <option value="$PROJECT_DIR$/incomes/models.py" />
+        <option value="$PROJECT_DIR$/shop_quick_view/settings.py" />
       </list>
     </option>
   </component>
@@ -174,7 +200,7 @@
             <path>
               <item name="farm-manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="farm-manager" type="462c0819:PsiDirectoryNode" />
-              <item name="frontend" type="462c0819:PsiDirectoryNode" />
+              <item name="shop_quick_view" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -255,7 +281,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1936" height="1056" extended-state="7" />
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
@@ -263,8 +290,8 @@
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3103082" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.12135417" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.3103082" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12135417" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="3" />
       <window_info anchor="right" id="SciView" order="3" />
@@ -273,36 +300,36 @@
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="manage.py@shop_quick_view" order="8" weight="0.32831737" />
+      <window_info anchor="bottom" id="Message" order="0" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.15885417" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="8" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
+      <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="manage.py@shop_quick_view" order="13" visible="true" weight="0.32831737" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.27633378" />
       <window_info anchor="bottom" id="Event Log" order="12" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="right" id="SciView" order="3" />
-      <window_info anchor="bottom" id="Find" order="1" />
-      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
     </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -421,20 +448,11 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="57">
           <caret line="97" column="14" selection-start-line="97" selection-start-column="14" selection-end-line="97" selection-end-column="14" />
-          <folding>
-            <element signature="e#0#95#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/payroll/tables.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/payroll/views.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -450,12 +468,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1157">
           <caret line="59" column="33" selection-start-line="59" selection-start-column="33" selection-end-line="59" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-            <element signature="e#634#1447#0" />
-            <element signature="e#1554#2084#0" />
-            <element signature="e#2191#2834#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -487,9 +499,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="442">
           <caret line="26" column="11" selection-start-line="26" selection-start-column="11" selection-end-line="26" selection-end-column="11" />
-          <folding>
-            <element signature="e#0#71#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -504,9 +513,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="346">
           <caret line="47" column="37" selection-start-line="47" selection-start-column="6" selection-end-line="47" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -521,9 +527,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
           <caret line="20" column="60" lean-forward="true" selection-start-line="20" selection-start-column="60" selection-end-line="20" selection-end-column="60" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -531,9 +534,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1564">
           <caret line="102" column="50" selection-start-line="102" selection-start-column="50" selection-end-line="102" selection-end-column="50" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -541,9 +541,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="170">
           <caret line="13" column="19" selection-start-line="13" selection-start-column="19" selection-end-line="13" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#56#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -596,9 +593,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
           <caret line="63" column="71" selection-start-line="63" selection-start-column="71" selection-end-line="63" selection-end-column="71" />
-          <folding>
-            <element signature="e#355#375#0#HTML" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -620,9 +614,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
           <caret line="28" column="70" lean-forward="true" selection-start-line="28" selection-start-column="70" selection-end-line="28" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -630,9 +621,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="71" column="99" selection-start-line="71" selection-start-column="99" selection-end-line="71" selection-end-column="99" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -654,12 +642,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="440">
           <caret line="152" column="99" selection-start-line="152" selection-start-column="99" selection-end-line="152" selection-end-column="99" />
-          <folding>
-            <element signature="e#0#73#0" expanded="true" />
-            <element signature="e#681#1300#0" />
-            <element signature="e#1402#2158#0" />
-            <element signature="e#2259#2836#0" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -674,16 +656,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="200">
           <caret line="164" column="6" selection-start-line="164" selection-start-column="6" selection-end-line="164" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/shop_quick_view/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="20" selection-start-line="15" selection-start-column="20" selection-end-line="15" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -738,19 +710,29 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/incomes/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-527">
-          <caret line="78" column="21" selection-start-line="78" selection-start-column="6" selection-end-line="78" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/general_expenses/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="380">
           <caret line="93" column="49" selection-start-line="93" selection-start-column="49" selection-end-line="93" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/incomes/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="167" selection-start-line="167" selection-end-line="167" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/shop_quick_view/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
           </folding>
         </state>
       </provider>

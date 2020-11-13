@@ -4,7 +4,7 @@ from django.db.models import Sum, Q
 from django.db.models.signals import post_delete
 from django.conf import settings
 from django.dispatch import receiver
-
+from vendors.models import TAXES_CHOICES
 from django.utils import timezone
 
 from tinymce.models import HTMLField
@@ -151,10 +151,10 @@ class Income(models.Model):
     date_expired = models.DateField(verbose_name='Ημερομηνια')
     title = models.CharField(blank=True, null=True, verbose_name='Σημειωσεις', max_length=240)
     value = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='ΚΑΘΑΡΗ ΑΞΙΑ')
-    taxes_modifier = models.IntegerField(default=24, verbose_name='ΦΠΑ')
+    taxes_modifier = models.CharField(max_length=1, choices=TAXES_CHOICES, default='a')
     taxes = models.DecimalField(decimal_places=2, max_digits=20, default=0, verbose_name='ΦΟΡΟΣ')
     order_type = models.CharField(default='a', choices=ORDER_TYPE_STATUS, max_length=1, verbose_name='ΕΙΔΟΣ ΠΑΡΑΣΤΑΤΙΚΟΥ')
-    total_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΑΞΙΑ' )
+    total_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΑΞΙΑ')
 
     class Meta:
         ordering = ['-date_expired']
@@ -163,8 +163,9 @@ class Income(models.Model):
         return f'{self.date_expired}'
 
     def save(self, *args, **kwargs):
-        self.value = self.total_value/Decimal(1 + self.taxes_modifier/100)
-        self.taxes = self.total_value - self.value
+        self.taxes = self.total_value * Decimal(self.get_taxes_modifier_display()/100)
+        self.value = self.total_value - self.taxes
+
         super().save(*args, **kwargs)
         self.costumer.save()
 
