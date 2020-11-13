@@ -19,6 +19,7 @@ def initial_date(request, months=12):
     date_now = datetime.datetime.today()
     current_year = f'01/01/{datetime.date.today().year} - 12/31/{datetime.date.today().year}'
     date_range = request.GET.get('date_range', current_year)
+    print('data from frontend', date_range)
     date_start, date_end = None, None
 
     if date_range:

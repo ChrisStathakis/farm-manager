@@ -4,6 +4,7 @@ from django.conf import settings
 from django.db.models import Sum
 from vendors.models import TAXES_CHOICES
 
+from frontend.tools import initial_date
 CURRENCY = settings.CURRENCY
 
 
@@ -90,8 +91,13 @@ class GeneralExpense(models.Model):
 
     @staticmethod
     def filters_data(request, qs):
+        date_start, date_end, date_range = initial_date(request, 6)
         search_name = request.GET.get('search_name', None)
         cate_name = request.GET.getlist('cate_name', None)
         qs = qs.filter(title__icontains=search_name) if search_name else qs
         qs = qs.filter(category__id__in=cate_name) if cate_name else qs
+        print(date_start, date_end)
+        if date_end and date_start and date_end >= date_start:
+            qs = qs.filter(date__range=[date_start, date_end])
+        print(qs)
         return qs

@@ -32,7 +32,7 @@
     <script type="text/javascript" src="{% static 'daterangepicker-master/daterangepicker.js' %}"></script>
     <script type="text/javascript">
         $(function() {
-            var start = moment().subtract(24, 'months');
+            var start = moment().subtract(1, 'months');
             var end = moment().endOf('year');
             function cb(start, end) {
                 $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
