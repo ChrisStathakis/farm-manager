@@ -149,6 +149,8 @@ class CostumerUpdateView(UpdateView):
             'customer': self.object
         })
         context['date_filter'] = True
+        context['incomes'] = Income.filters_data(self.request, self.object.incomes.all())
+        context['payments'] = CostumerPayment.filters_data(self.request, self.object.payments.all())
         return context
 
 

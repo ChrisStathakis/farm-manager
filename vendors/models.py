@@ -121,7 +121,7 @@ class Invoice(models.Model):
     title = models.CharField(max_length=150, verbose_name='Αριθμος Τιμολογιου')
     payment_method = models.ForeignKey(PaymentMethod, on_delete=models.PROTECT, null=True, verbose_name='Τροπος Πληρωμης')
     vendor = models.ForeignKey(Vendor, on_delete=models.CASCADE, related_name='invoices', verbose_name='Προμηθευτης')
-    value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='Καθαρή Αξια')
+    value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='ΑΞΙΑ ΤΙΜΟΛΟΓΙΟΥ')
     extra_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='Επιπλέον Αξία')
     final_value = models.DecimalField(decimal_places=2, max_digits=20, verbose_name='Αξία', default=0.00)
     description = models.TextField(blank=True, verbose_name='Λεπτομεριες')

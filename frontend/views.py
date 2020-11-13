@@ -34,7 +34,7 @@ class HomepageView(TemplateView):
         currency = CURRENCY
         date_start, date_end = datetime.today().replace(day=1), datetime.today()
         incomes = Income.objects.filter(date_expired__range=[date_start, date_end])
-        monthly_incomes = incomes.aggregate(Sum('logistic_value'))['logistic_value__sum'] if incomes.exists() else 0
+        monthly_incomes = incomes.aggregate(Sum('total_value'))['total_value__sum'] if incomes.exists() else 0
 
         # bills
         bills_pending = Bill.objects.filter(is_paid=False)

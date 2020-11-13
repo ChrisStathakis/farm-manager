@@ -11,7 +11,7 @@ from django.conf import settings
 from operator import attrgetter
 from itertools import chain
 
-from incomes.models import Income, Costumer
+from incomes.models import Income, Costumer, CostumerPayment
 from products.models import Product, ProductVendor
 from payroll.models import Bill, Payroll
 from vendors.models import Payment, Invoice
@@ -48,11 +48,11 @@ class AnalysisIncomeView(ListView):
         analysis_per_month = self.object_list.annotate(month=TruncMonth('date_expired')).values('month').annotate(
             total=Sum('value')).values('month', 'total').order_by('month')
 
-        analysis_z_per_month = self.object_list.annotate(month=TruncMonth('date_expired')).values('month').annotate(
+        analysis_value_per_month = self.object_list.annotate(month=TruncMonth('date_expired')).values('month').annotate(
             total=Sum('value')).values('month', 'total').order_by('month')
-        analysis_pos_per_month = self.object_list.annotate(month=TruncMonth('date_expired')).values('month').annotate(
+        analysis_taxes_per_month = self.object_list.annotate(month=TruncMonth('date_expired')).values('month').annotate(
             total=Sum('taxes')).values('month', 'total').order_by('month')
-        analysis_cash_per_month = self.object_list.annotate(month=TruncMonth('date_expired')).values('month').annotate(
+        analysis_total_value_per_month = self.object_list.annotate(month=TruncMonth('date_expired')).values('month').annotate(
             total=Sum('total_value')).values('month', 'total').order_by('month')
         total_incomes = self.object_list.aggregate(Sum('total_value'))['total_value__sum']
 
@@ -192,11 +192,14 @@ class BalanceSheetView(TemplateView):
 
         # incomes
         incomes = Income.filters_data(self.request, Income.objects.all())
+        paid_incomes = CostumerPayment.filters_data(self.request, CostumerPayment.objects.all())
         income_clean_value, income_taxes, income_value = 0, 0, 0
+        paid_incomes = paid_incomes.aggregate(Sum('value'))['value__sum'] if paid_incomes.exists() else 0
         if incomes.exists():
             income_clean_value = round(incomes.aggregate(Sum('value'))['value__sum'], 2)
             income_taxes = round(incomes.aggregate(Sum('taxes'))['taxes__sum'], 2)
             income_value = round(incomes.aggregate(Sum('total_value'))['total_value__sum'], 2)
+        remaining_incomes = income_value - paid_incomes
 
         incomes_per_month = incomes.annotate(month=TruncMonth('date_expired')).values('month', 'total_value').annotate(
             total=Sum('total_value')).values('month', 'total').order_by('month')
@@ -204,7 +207,7 @@ class BalanceSheetView(TemplateView):
             .annotate(
                       total_taxes=Sum('taxes'),
                       total_value=Sum('value'),
-                      # total=Sum('total_value')
+                      # totalk=Sum('total_value')
                       ).order_by('month')
 
 
@@ -214,17 +217,20 @@ class BalanceSheetView(TemplateView):
         invoices = Invoice.filters_data(self.request, Invoice.objects.all())
         invoices_per_month = invoices.annotate(month=TruncMonth('date')).values('month').annotate(total=Sum('final_value')).values('month', 'total').order_by('month')
         invoices_total = invoices.aggregate(Sum('final_value'))['final_value__sum'] if invoices.exists() else 0
+        invoices_taxes = invoices.aggregate(Sum('total_taxes'))['total_taxes__sum'] if invoices.exists() else 0
         vendors = invoices.values('vendor__title', 'vendor__balance').annotate(total=Sum('final_value')).order_by('-total')[:15]
 
         # payments
         payments = Payment.filters_data(self.request, Payment.objects.all())
         payments_total = payments.aggregate(Sum('value'))['value__sum'] if payments.exists() else 0
+        # payments_taxes = payments.aggregate(Sum('total_taxes'))['total_taxes__sum'] if payments.exists() else 0
         vendors_remaining = invoices_total - payments_total
 
         # bills
         bills = Bill.filters_data(self.request, Bill.objects.all())
         bills_per_month = bills.annotate(month=TruncMonth('date_expired')).values('month').annotate(total=Sum('final_value')).values('month', 'total').order_by('month')
         bills_total = bills.aggregate(Sum('final_value'))['final_value__sum'] if bills.exists() else 0
+        bills_taxes = bills.aggregate(Sum('total_taxes'))['total_taxes__sum'] if bills.exists() else 0
         bills_paid_total = bills.filter(is_paid=True).aggregate(Sum('final_value'))['final_value__sum'] if bills.filter(is_paid=True).exists() else 0
         bills_per_bill = bills.values('category__title').annotate(total_pay=Sum('final_value'),
                                                                   paid_value=Sum('paid_value'))\
@@ -244,8 +250,9 @@ class BalanceSheetView(TemplateView):
         general_per_month = general_expenses.annotate(month=TruncMonth('date')).values('month')\
             .annotate(total=Sum('value')).values('month', 'total').order_by('month')
         general_total = general_expenses.aggregate(Sum('value'))['value__sum'] if general_expenses.exists() else 0
-        general_paid = general_expenses.filter(is_paid=True)
-        general_paid_total = general_paid.aggregate(Sum('value'))['value__sum'] if general_paid.exists() else 0
+        general_taxes = general_expenses.aggregate(Sum('total_taxes'))['total_taxes__sum'] if general_expenses.exists() else 0
+        general_paid_qs = general_expenses.filter(is_paid=True)
+        general_paid_total = general_paid_qs.aggregate(Sum('value'))['value__sum'] if general_paid_qs.exists() else 0
         expenses_per_category = general_expenses.values('category__title').annotate(total_pay=Sum('value'),
                                                                                     paid_value=Sum('paid_value'))\
             .order_by('category__title')
@@ -253,6 +260,10 @@ class BalanceSheetView(TemplateView):
         # diffs
         totals = bills_total + payrolls_total + invoices_total + general_total
         paid_totals = bills_paid_total + payrolls_paid_total + payments_total + general_paid_total
+        total_taxes = bills_taxes + general_taxes + general_taxes + invoices_taxes
+        taxes_diff = income_taxes - total_taxes
+        income_expenses_diff = income_value - payrolls_total - bills_total - general_total - invoices_total
+        income_expenses_diff_paid = paid_incomes - payments_total - payrolls_paid_total - bills_paid_total - general_paid_total
 
         # chart analysis
         months = sort_months([incomes_per_month, invoices_per_month, payroll_per_month, bills_per_month, general_per_month])

@@ -68,8 +68,6 @@ class Costumer(models.Model):
     def __str__(self):
         return self.eponimia
 
-
-
     def update_orders(self):
         qs = self.orders.all()
         new_value = qs.aggregate(Sum('value'))['value__sum'] if qs.exists() else 0

@@ -9,8 +9,11 @@
                     <div class="card-header">
                         <h4>Συνολική Εικόνα</h4>
                         <div class="row">
-                            <div class="col-6"> <h5>Διαφορα με Υποχρεωσεις ==> {{ diff_obligations }} {{ currency }}</h5></div>
-                            <div class="col-6"><h5>Διαφορα με πληρωμες ==> {{ diff_paid }} {{ currency }}</h5></div>
+                            <div class="col-6">
+                                <h5>ΚΑΤΑΣΤΑΣΗ ==> {{ income_expenses_diff }} {{ currency }}</h5>
+                                <h5>ΔΙΑΦΟΡΑ ΜΕ ΠΛΗΡΩΜΕΣ ==> {{ income_expenses_diff_paid }} {{ currency }}</h5>
+                            </div>
+                            <div class="col-6"><h5>ΔΙΑΦΟΡΑ ΦΠΑ ==> {{ taxes_diff }} {{ currency }}</h5></div>
                         </div>
                         <a class="btn btn-primary"
                            data-toggle="collapse"
@@ -86,29 +89,29 @@
                             <thead>
                                 <tr class='table-danger'>
                                     <th>Υποχρεωση</th>
-                                    <th>Συνολικό Ποσο</th>
+                                    <th>Συνολικό Ποσο - ΦΠΑ</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td>Προμηθευτες</td>
-                                    <td>{{ invoices_total }} {{ currency }}</td>
+                                    <td>{{ invoices_total }} {{ currency }} - <span style="color: red">{{ invoices_taxes }} {{ currency }}</span> </td>
                                 </tr>
                                 <tr>
                                     <td>Λογαριασμοι</td>
-                                    <td>{{ bills_total }} {{ currency }}</td>
+                                    <td>{{ bills_total }} {{ currency }} - <span style="color: red">{{ bills_taxes }} {{ currency }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Μισθοδοσια</td>
-                                    <td>{{ payrolls_total }} {{ currency }}</td>
+                                    <td>{{ payrolls_total }} {{ currency }} - <span style="color: red">{{ payments_taxes }} {{ currency }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Γενικα Εξοδα</td>
-                                    <td>{{ general_total }} {{ currency }}</td>
+                                    <td>{{ general_taxes }} {{ currency }} - <span style="color: red">{{ invoices_taxes }} {{ currency }}</span></td>
                                 </tr>
                                 <tr>
                                     <td>Συνολο</td>
-                                    <td class="table-warning">{{ totals }} {{ currency }}</td>
+                                    <td class="table-warning">{{ totals }} {{ currency }} - <span style="color: red">{{ total_taxes }} {{ currency }}</span></td>
                                 </tr>
                             </tbody>
                         </table>
@@ -163,6 +166,14 @@
                                 <tr>
                                     <td>ΦΟΡΟΣ</td>
                                     <td>{{ income_taxes }} {{ currency }}</td>
+                                </tr>
+                                <tr>
+                                    <td>ΠΛΗΡΩΤΕΑ ΕΣΟΔΑ</td>
+                                    <td class="table-warning">{{ paid_incomes }} {{ currency }}</td>
+                                </tr>
+                                 <tr>
+                                    <td>ΔΙΑΦΟΡΑ</td>
+                                    <td class="table-danger">{{ remaining_incomes }} {{ currency }}</td>
                                 </tr>
                                 <tr>
                                     <td>ΣΥΝΟΛΟ</td>

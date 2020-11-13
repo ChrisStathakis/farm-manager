@@ -188,7 +188,9 @@ class Income(models.Model):
         search_name = request.GET.get('search_name', None)
         date_start, date_end, date_range = initial_date(request, 6)
         qs = qs.filter(notes__icontains=search_name) if search_name else qs
+        print(date_start, date_end)
         if date_start and date_end:
+            print('her!')
             qs = qs.filter(date_expired__range=[date_start, date_end])
         return qs
 

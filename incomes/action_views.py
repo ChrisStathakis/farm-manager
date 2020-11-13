@@ -51,7 +51,7 @@ def update_or_delete_income_view(request, pk, type_):
     if type_ == 'delete':
         obj.delete()
         return redirect(obj.costumer.get_edit_url())
-    form = InvoiceFormFromCostumer(request.POST, instance=obj)
+    form = InvoiceFormFromCostumer(request.POST or None, instance=obj, initial={'costumer': obj.costumer})
     if form.is_valid():
         form.save()
         return redirect(obj.costumer.get_edit_url())

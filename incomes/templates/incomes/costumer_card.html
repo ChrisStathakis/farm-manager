@@ -6,7 +6,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="header">
-                    <h4>{{ object }}</h4>
+                    <h4>{{ object }} ΥΠΟΛΟΙΠΟ ==> {{ object.tag_balance }}</h4>
                     <a href="{% url 'costumer_list' %}" class="btn btn-warning pull-right">ΕΠΙΣΤΡΟΦΗ</a>
                 </div>
             </div>
@@ -86,7 +86,7 @@
                                         <td>{{ ele.date_expired }}</td>
                                         <td>{{ ele.title }}</td>
                                         <td>{{ ele.payment_method }}</td>
-                                        <td>{{ ele.tag_final_value }}</td>
+                                        <td>{{ ele.tag_total_value }}</td>
                                         <td>
                                             <a href="{% url 'incomes:update_or_delete_income_view' ele.id 'update' %}" class="btn btn-success"><i class="fa fa-edit"></i> </a>
                                             <a href="{% url 'incomes:update_or_delete_income_view' ele.id 'delete' %}" class="btn btn-danger">
@@ -115,7 +115,7 @@
                                 </tr>
                            </thead>
                            <tbody>
-                                {% for ele in object.payments.all %}
+                                {% for ele in payments %}
                                     <tr>
                                         <td>{{ ele.date }}</td>
                                         <td>{{ ele.title }}</td>

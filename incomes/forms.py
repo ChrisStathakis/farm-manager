@@ -28,8 +28,9 @@ class CostumerPaymentForm(BaseForm, forms.ModelForm):
 
 
 class CostumerPaymentFromCostumerForm(CostumerPaymentForm):
-    customer = forms.ModelChoiceField(queryset=Costumer.objects.filter(active=True), widget=forms.HiddenInput())
-
+    # costumer = forms.ModelChoiceField(queryset=Costumer.objects.filter(active=True), widget=forms.HiddenInput())
+    pass
 
 class InvoiceFormFromCostumer(IncomeForm):
-    customer = forms.ModelChoiceField(queryset=Income.objects.all(), widget=forms.HiddenInput())
+    # costumer = forms.ModelChoiceField(queryset=Income.objects.all(), widget=forms.HiddenInput())
+    pass
