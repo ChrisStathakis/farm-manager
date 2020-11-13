@@ -183,3 +183,7 @@ BOOTSTRAP4 = {
 
 
 SHOW_BILLING = False
+
+ADMINS = (
+  ('chris', 'lirageika@hotmail.gr')
+)
